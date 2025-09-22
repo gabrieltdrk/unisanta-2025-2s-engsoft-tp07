@@ -1,23 +1,22 @@
 # Tarefa: TASK-001 - Cadastro de Usuário
 
-## Prompt FRONT-END 001: Desenvolver o Formulário de Cadastro de Usuário
+## TASK 009: Desenvolver o Formulário de Cadastro de Usuário
 
-```MD
 ### Contexto do Projeto Connexa:
 - Plataforma web para grupos de estudo universitário
 - Stack: Node.js + Express + SQLite + HTML/CSS/JS
 - Já temos a estrutura básica do projeto criada
 
-## User Story: Como aluno universitário, quero desenvolver o Formulário de Cadastro de Usuário
+### User Story: Como aluno universitário, quero desenvolver o Formulário de Cadastro de Usuário
 
-## Critérios de Aceitação da Story:
+### Critérios de Aceitação da Story:
 1. Criar formulários com os seguintes campos:
 2. Nome completo (input type="text")
 3. E-mail institucional (input type="email")
 4. Curso (input type="text" ou select, se tiver lista fixa)
 5. Período/Semestre (input type= "select")
 6. Senha (input type="password")
-
+```JS
 <form id="cadastroUsuario">
   <label>Nome Completo:</label>
   <input type="text" id="nomeCompleto" required maxlength="150">
@@ -38,8 +37,7 @@
 </form>
 ```
 
-## Resultado:
-
+### Resultado:
 ### HTML
 ```HTML
 <!DOCTYPE html>
@@ -79,7 +77,6 @@
 </body>
 </html>
 ```
-
 ### JS
 ```JS
 document.getElementById('cadastroUsuario').addEventListener('submit', async function(e) {
@@ -123,4 +120,36 @@ document.getElementById('cadastroUsuario').addEventListener('submit', async func
     mensagem.textContent = 'Erro de conexão com o servidor.';
   }
 });
+```
+
+## Task 045: Validar o domínio do e-mail
+
+Antes do envio, validar se o e-mail contém @university.edu.
+Caso inválido, mostrar mensagem ao usuário.
+```JS
+const email = document.getElementById("email").value;
+
+if (!email.endsWith("@university.edu")) {
+  alert("O e-mail precisa ser institucional (@university.edu).");
+  return false; // impede envio
+}
+```
+### TASK 046: Validação de Senha
+
+3. Validação da senha
+Validar os critérios abaixo, utilizando o Regex
+@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+Mínimo de 8 caracteres
+Pelo menos 1 letra maiúscula
+Pelo menos 1 letra minúscula
+Pelo menos 1 número
+
+```JS
+const senha = document.getElementById("senha").value;
+const regexSenha = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+if (!regexSenha.test(senha)) {
+  alert("A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula e número.");
+  return false; // impede envio
+}
 ```

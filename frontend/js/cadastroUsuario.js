@@ -14,8 +14,13 @@ document.getElementById('cadastroUsuario').addEventListener('submit', async func
     mensagem.textContent = 'Preencha todos os campos obrigatórios.';
     return;
   }
-  if (senha.length < 8) {
-    mensagem.textContent = 'A senha deve ter pelo menos 8 caracteres.';
+  if (!email.endsWith('@university.edu')) {
+    mensagem.textContent = 'O e-mail precisa ser institucional (@university.edu).';
+    return;
+  }
+  const regexSenha = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+  if (!regexSenha.test(senha)) {
+    mensagem.textContent = 'A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula e número.';
     return;
   }
 

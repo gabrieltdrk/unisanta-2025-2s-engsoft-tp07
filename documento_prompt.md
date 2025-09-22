@@ -130,7 +130,7 @@ O JavaScript torna as estrelas interativas, valida os campos em tempo real (incl
 
 
 
-## Tarefa: 39 - [[FRONT-END] 2 - Criar formulário de agendamento de "sessão de estudo"
+## Tarefa: 39 - [FRONT-END] 2 - Criar formulário de agendamento de "sessão de estudo"
 
 ### Prompt Frontend:
 
