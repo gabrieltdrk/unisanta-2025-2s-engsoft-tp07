@@ -1,155 +1,104 @@
+# Prompts Utilizados - Grupo 04
+
 # Tarefa: TASK-001 - Cadastro de Usuário
 
-## TASK 009: Desenvolver o Formulário de Cadastro de Usuário
+### TASK 009 (FRONTEND): Desenvolver o Formulário de Cadastro de Usuário
 
-### Contexto do Projeto Connexa:
-- Plataforma web para grupos de estudo universitário
-- Stack: Node.js + Express + SQLite + HTML/CSS/JS
-- Já temos a estrutura básica do projeto criada
+### Prompt Frontend:
+Plataforma web para grupos de estudo universitário  
+Stack: Node.js + Express + SQLite + HTML/CSS/JS  
+Já temos a estrutura básica do projeto criada
 
-### User Story: Como aluno universitário, quero desenvolver o Formulário de Cadastro de Usuário
+User Story: Como aluno universitário, quero desenvolver o Formulário de Cadastro de Usuário
 
-### Critérios de Aceitação da Story:
+Critérios de Aceitação da Story:
 1. Criar formulários com os seguintes campos:
 2. Nome completo (input type="text")
 3. E-mail institucional (input type="email")
 4. Curso (input type="text" ou select, se tiver lista fixa)
 5. Período/Semestre (input type= "select")
 6. Senha (input type="password")
-```JS
-<form id="cadastroUsuario">
-  <label>Nome Completo:</label>
-  <input type="text" id="nomeCompleto" required maxlength="150">
-
-  <label>E-mail Institucional:</label>
-  <input type="email" id="email" required maxlength="150">
-
-  <label>Curso:</label>
-  <input type="text" id="curso" required maxlength="100">
-
-  <label>Período/Semestre:</label>
-  <input type="number" id="periodo" min="1" max="12" required>
-
-  <label>Senha:</label>
-  <input type="password" id="senha" required minlength="8">
-
-  <button type="submit">Cadastrar</button>
-</form>
-```
 
 ### Resultado:
-### HTML
-```HTML
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <title>Cadastro de Usuário</title>
-  <link rel="stylesheet" href="css/sessaoForm.css" />
-</head>
-<body>
-  <form id="cadastroUsuario">
-    <h2>Cadastro de Usuário</h2>
-    <label>
-      Nome Completo*:
-      <input type="text" id="nomeCompleto" required maxlength="150" />
-    </label>
-    <label>
-      E-mail Institucional*:
-      <input type="email" id="email" required maxlength="150" />
-    </label>
-    <label>
-      Curso*:
-      <input type="text" id="curso" required maxlength="100" />
-    </label>
-    <label>
-      Período/Semestre*:
-      <input type="number" id="periodo" min="1" max="12" required />
-    </label>
-    <label>
-      Senha*:
-      <input type="password" id="senha" required minlength="8" />
-    </label>
-    <button type="submit" id="btnCadastrar">Cadastrar</button>
-    <div id="mensagem"></div>
-  </form>
-  <script src="js/cadastroUsuario.js"></script>
-</body>
-</html>
-```
-### JS
-```JS
-document.getElementById('cadastroUsuario').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const nomeCompleto = this.nomeCompleto.value.trim();
-  const email = this.email.value.trim();
-  const curso = this.curso.value.trim();
-  const periodo = this.periodo.value;
-  const senha = this.senha.value;
+O formulário HTML possui campos para nome completo, e-mail institucional, curso, período/semestre e senha, todos com validações básicas (`required`, limites de caracteres). Um botão "Cadastrar" envia o formulário. O JS valida os campos, verifica domínio do e-mail e força senha forte antes de enviar via POST para o backend. Mensagens de sucesso ou erro são exibidas ao usuário.
 
-  const mensagem = document.getElementById('mensagem');
-  mensagem.textContent = '';
-  mensagem.classList.remove('sucesso');
+### TASK 045 (BACKEND): Validar domínio de e-mail
 
-  if (!nomeCompleto || !email || !curso || !periodo || !senha) {
-    mensagem.textContent = 'Preencha todos os campos obrigatórios.';
-    return;
-  }
-  if (senha.length < 8) {
-    mensagem.textContent = 'A senha deve ter pelo menos 8 caracteres.';
-    return;
-  }
-
-  const payload = { nomeCompleto, email, curso, periodo, senha };
-
-  try {
-    const res = await fetch('/api/usuarios', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (res.ok) {
-      mensagem.textContent = 'Usuário cadastrado com sucesso!';
-      mensagem.classList.add('sucesso');
-      this.reset();
-    } else {
-      const erro = await res.json();
-      mensagem.textContent = erro.message || 'Erro ao cadastrar usuário.';
-    }
-  } catch {
-    mensagem.textContent = 'Erro de conexão com o servidor.';
-  }
-});
-```
-
-## Task 045: Validar o domínio do e-mail
-
-Antes do envio, validar se o e-mail contém @university.edu.
+### Prompt Backend:
+Antes do envio, validar se o e-mail contém @university.edu.  
 Caso inválido, mostrar mensagem ao usuário.
-```JS
-const email = document.getElementById("email").value;
 
-if (!email.endsWith("@university.edu")) {
-  alert("O e-mail precisa ser institucional (@university.edu).");
-  return false; // impede envio
-}
-```
-### TASK 046: Validação de Senha
+Validação de Senha:  
+Utilizar Regex para garantir pelo menos 8 caracteres, uma letra maiúscula, uma minúscula e um número.
 
-3. Validação da senha
-Validar os critérios abaixo, utilizando o Regex
-@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
-Mínimo de 8 caracteres
-Pelo menos 1 letra maiúscula
-Pelo menos 1 letra minúscula
-Pelo menos 1 número
+### Resultado:
+O endpoint `/api/usuarios` recebe os dados, valida todos os campos, verifica se o e-mail termina com "@university.edu" e se a senha é forte. Se tudo estiver correto, salva o usuário no banco SQLite. Retorna mensagens claras de erro ou sucesso.
 
-```JS
-const senha = document.getElementById("senha").value;
-const regexSenha = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+# Tarefa: TASK-005 - Agenda de Estudo em Grupo 
 
-if (!regexSenha.test(senha)) {
-  alert("A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula e número.");
-  return false; // impede envio
-}
-```
+### Tarefa: TASK-025 - Componente de Envio de Feedback
+
+### Prompt Frontend:
+Feedback sobre Sessões de Estudo
+
+User Story: Como um aluno universitário, eu quero fornecer feedback, tanto individual quanto em grupo sobre as sessões de estudo, para que os outros participantes saibam o que funcionou bem e onde é possível melhorar.
+
+Critérios de Aceitação da Story:
+- Permitir comentários sobre as sessões de estudo;
+- Feedback pode ser público ou privado;
+- Sistema de avaliação por estrelas (1-5) + comentário;
+- Feedback deve ser enviado em até 24h após término da sessão.
+
+Campos do Formulário:
+•  Avaliação: ⭐ 1 a 5 estrelas (obrigatório)
+•  Comentário: campo de texto livre (obrigatório)
+•  Visibilidade: seleção entre “Público” ou “Privado” (obrigatório)
+
+Validações:
+•  Todos os campos são obrigatórios
+•  Comentário deve ter no mínimo 10 caracteres
+•  Feedback só pode ser enviado até 24h após o término da sessão
+
+### Resultado:
+O componente exibe estrelas interativas, campo de comentário e seleção de visibilidade. JS valida os campos, controla o botão de envio e integra com o backend. Mensagens de sucesso, erro e alerta de prazo são exibidas ao usuário.
+
+
+
+## Tarefa: TASK-039 - Formulário Alternativo de Agendamento de Sessão
+
+### Prompt Frontend:
+Formulário alternativo para agendamento de sessão, com validação aprimorada e integração ao endpoint de sessões.
+
+### Resultado:
+Interface semelhante ao formulário principal, com validações extras e feedback visual aprimorado. JS alterna campos conforme tipo de sessão, valida recorrência e envia dados ao backend, exibindo mensagens claras.
+
+### Tarefa: TASK-043 - Criar formulário de agendamento de "sessão de estudo"
+
+### Prompt Frontend:
+Agenda de Estudo em Grupo
+
+User Story: Como um aluno universitário, eu quero que o grupo de estudo tenha uma agenda para marcar sessões de estudo, para que todos os membros saibam os horários e possam participar ativamente.
+
+Critérios de Aceitação da Story:
+- O criador do grupo pode adicionar sessões de estudo à agenda;
+- Os membros do grupo devem ser notificados sobre a agenda e horários das sessões.
+- O sistema deve permitir a marcação de eventos recorrentes (ex: estudo semanal).
+- O grupo pode definir se a sessão de estudo será online ou presencial.
+
+Campos do Formulário:
+•  Título da sessão (obrigatório)
+•  Data e hora (obrigatório)
+•  Tipo de sessão: online ou presencial (obrigatório)
+•  Local físico ou link da reunião (obrigatório)
+•  Recorrência: nenhuma, diária, semanal, mensal (opcional)
+•  Data final da recorrência (se aplicável)
+
+Validações:
+•  Todos os campos obrigatórios devem estar preenchidos
+•  Data e hora devem ser futuras
+•  Se tipo for “online”, o campo de link deve ser validado como URL
+•  Se tipo for “presencial”, o campo de local deve ser preenchido com texto
+•  Se recorrência estiver ativa, a data final deve ser posterior à data inicial
+
+### Resultado:
+A interface apresenta um formulário intuitivo para agendar sessões de estudo, alternando dinamicamente entre campos de local/link conforme o tipo de sessão. O JS valida todos os campos, controla exibição de recorrência e envia os dados para o backend, exibindo mensagens de sucesso ou erro.
