@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro de Usuário</title>
+  <link rel="stylesheet" href="css/sessaoForm.css" />
+</head>
+<body>
+  <form id="cadastroUsuario">
+    <h2>Cadastro de Usuário</h2>
+    <label>
+      Nome Completo*:
+      <input type="text" id="nomeCompleto" required maxlength="150" />
+    </label>
+    <label>
+      E-mail Institucional*:
+      <input type="email" id="email" required maxlength="150" />
+    </label>
+    <label>
+      Curso*:
+      <input type="text" id="curso" required maxlength="100" />
+    </label>
+    <label>
+      Período/Semestre*:
+      <input type="number" id="periodo" min="1" max="12" required />
+    </label>
+    <label>
+      Senha*:
+      <input type="password" id="senha" required minlength="8" />
+    </label>
+    <button type="submit" id="btnCadastrar">Cadastrar</button>
+    <div id="mensagem"></div>
+  </form>
+  <script src="js/cadastroUsuario.js"></script>
+</body>
+</html>
