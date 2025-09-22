@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feedback da Sessão de Estudo</title>
+  <link rel="stylesheet" href="css/feedbackForm.css" />
+</head>
+<body>
+  <form id="feedbackForm">
+    <h2>Enviar Feedback</h2>
+    <div class="estrelas" id="estrelas">
+      <label>Avaliação*:</label>
+      <span data-value="1">&#9733;</span>
+      <span data-value="2">&#9733;</span>
+      <span data-value="3">&#9733;</span>
+      <span data-value="4">&#9733;</span>
+      <span data-value="5">&#9733;</span>
+    </div>
+    <input type="hidden" name="avaliacao" id="avaliacao" required />
+
+    <label>
+      Comentário*:
+      <textarea name="comentario" id="comentario" rows="3" minlength="10" required placeholder="Escreva seu feedback..."></textarea>
+    </label>
+
+    <label>
+      Visibilidade*:
+      <select name="visibilidade" id="visibilidade" required>
+        <option value="">Selecione</option>
+        <option value="publico">Público</option>
+        <option value="privado">Privado</option>
+      </select>
+    </label>
+
+    <button type="submit" id="btnEnviar" disabled>Enviar Feedback</button>
+    <div id="mensagem"></div>
+    <div id="alerta24h" style="display:none;">
+      <span>⚠️ O prazo para enviar feedback é de até 24h após o término da sessão.</span>
+    </div>
+  </form>
+  <script src="js/feedbackForm.js"></script>
+</body>
+</html>

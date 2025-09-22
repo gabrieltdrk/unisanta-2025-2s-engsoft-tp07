@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agendar Sessão de Estudo</title>
+  <link rel="stylesheet" href="css/sessaoForm.css" />
+</head>
+<body>
+  <form id="sessaoForm">
+    <h2>Agendar Sessão de Estudo</h2>
+    <label>
+      Título da sessão*:
+      <input type="text" name="titulo" required />
+    </label>
+    <br />
+
+    <label>
+      Data e hora*:
+      <input type="datetime-local" name="dataHora" required />
+    </label>
+    <br />
+
+    <label>
+      Tipo de sessão*:
+      <select name="tipo" id="tipoSessao" required>
+        <option value="">Selecione</option>
+        <option value="online">Online</option>
+        <option value="presencial">Presencial</option>
+      </select>
+    </label>
+    <br />
+
+    <div id="campoLocalLink"></div>
+
+    <label>
+      Recorrência:
+      <select name="recorrencia" id="recorrencia">
+        <option value="">Nenhuma</option>
+        <option value="diaria">Diária</option>
+        <option value="semanal">Semanal</option>
+        <option value="mensal">Mensal</option>
+      </select>
+    </label>
+    <br />
+
+    <div id="campoDataFinal" style="display:none;">
+      <label>
+        Data final da recorrência:
+        <input type="date" name="dataFinal" id="dataFinal" />
+      </label>
+    </div>
+    <br />
+
+    <button type="submit">Agendar Sessão</button>
+    <div id="mensagem"></div>
+  </form>
+  <script src="js/sessaoForm.js"></script>
+</body>
+</html>

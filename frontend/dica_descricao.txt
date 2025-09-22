@@ -1,0 +1,7 @@
+Ainda no Copilot Chat (usado para gerar os códigos) use o prompt abaixo para fornecer descrições...
+
+
+Resultado de Agenda de Estudo em Grupo
+[Breve descrição da interface gerada]
+
+Pode me oferecer um texto curto comentando o que existe e o que é renderizado no html, além do css e javascript existentes?
