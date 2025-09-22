@@ -1,0 +1,28 @@
+# Ignora a pasta node_modules
+node_modules/
+
+# Ignora logs
+*.log
+
+# Ignora arquivos de sistema de edição como o .DS_Store no macOS
+.DS_Store
+
+# Ignora arquivos de backup de editores
+*.swp
+*.swo
+
+# Ignora a pasta de builds de produção
+/dist
+/build
+
+# Ignora o arquivo package-lock.json (opcional, se não for necessário)
+package-lock.json
+
+# Ignora pastas de configuração do editor (opcional)
+.vscode/
+.idea/
+
+# Ignora arquivos de configuração do NPM (opcional)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

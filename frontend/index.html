@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Connexa - Plataforma de Grupos de Estudo</title>
+  <link rel="stylesheet" href="css/sessaoForm.css" />
+  <style>
+    /* Menu superior */
+    nav {
+      background: #3b82f6;
+      padding: 16px 0;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    nav ul li a:hover {
+      background: #2563eb;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    h1 {
+      text-align: center;
+      color: #2d3a4a;
+      margin-bottom: 24px;
+    }
+    .descricao {
+      text-align: center;
+      margin-bottom: 32px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="cadastro_usuario.html">Cadastro de Usuário</a></li>
+      <li><a href="sessao_form.html">Agendar Sessão</a></li>
+      <li><a href="feedback_form.html">Enviar Feedback</a></li>
+      <li><a href="feedback_sessao_form.html">Agendar Sessão (Feedback)</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <h1>Bem-vindo ao Connexa</h1>
+    <div class="descricao">
+      Plataforma web para grupos de estudo universitário.<br>
+      Utilize o menu acima para acessar as principais funcionalidades:<br>
+      <strong>Cadastro de Usuário</strong>, <strong>Agendamento de Sessão</strong> e <strong>Envio de Feedback</strong>.
+    </div>
+    <ul>
+      <li><strong>Cadastro de Usuário:</strong> Crie sua conta institucional para participar dos grupos.</li>
+      <li><strong>Agendar Sessão:</strong> Marque sessões de estudo online ou presenciais, com recorrência opcional.</li>
+      <li><strong>Enviar Feedback:</strong> Avalie as sessões de estudo com estrelas, comentário e visibilidade.</li>
+      <li><strong>Agendar Sessão (Feedback):</strong> Formulário alternativo para agendamento com validação aprimorada.</li>
+    </ul>
+  </div>
+</body>
+</html>

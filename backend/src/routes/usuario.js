@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../database/init');
+const db = require('../../../database/init');
 const bcrypt = require('bcrypt');
-const { v7: uuidv7 } = require('uuid7');
+const { v4: uuid } = require('uuid');
+
+// Regex para senha forte: mínimo 8 caracteres, 1 maiúscula, 1 minúscula, 1 número
+const regexSenha = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 router.post('/api/usuarios', async (req, res) => {
   const { nomeCompleto, email, curso, periodo, senha } = req.body;
@@ -14,13 +17,18 @@ router.post('/api/usuarios', async (req, res) => {
   if (nomeCompleto.length > 200 || email.length > 150 || curso.length > 100) {
     return res.status(400).json({ message: 'Um ou mais campos excedem o tamanho máximo.' });
   }
-  if (senha.length < 8) {
-    return res.status(400).json({ message: 'A senha deve ter pelo menos 8 caracteres.' });
+  if (!email.endsWith('@university.edu')) {
+    return res.status(400).json({ message: 'O e-mail precisa ser institucional (@university.edu).' });
+  }
+  if (!regexSenha.test(senha)) {
+    return res.status(400).json({
+      message: 'A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula e número.'
+    });
   }
 
   try {
     const senhaHash = await bcrypt.hash(senha, 10);
-    const id = uuidv7();
+    const id = uuid();
 
     db.run(
       `INSERT INTO Usuario (ID, NomeCompleto, EmailInstitucional, Curso, PeriodoSemestre, SenhaHash)
@@ -39,6 +47,6 @@ router.post('/api/usuarios', async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: 'Erro interno.' });
   }
-});
+})
 
-module.exports = router;
+module.exports = router

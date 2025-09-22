@@ -27,7 +27,7 @@ document.getElementById('cadastroUsuario').addEventListener('submit', async func
   const payload = { nomeCompleto, email, curso, periodo, senha };
 
   try {
-    const res = await fetch('/api/usuarios', {
+    const res = await fetch('http://localhost:3000/api/usuarios', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -41,6 +41,7 @@ document.getElementById('cadastroUsuario').addEventListener('submit', async func
       mensagem.textContent = erro.message || 'Erro ao cadastrar usuário.';
     }
   } catch {
+    console.log(res)
     mensagem.textContent = 'Erro de conexão com o servidor.';
   }
 });
