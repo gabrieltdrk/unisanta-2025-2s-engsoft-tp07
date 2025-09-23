@@ -1,6 +1,7 @@
 # Prompts Utilizados - Grupo 04
 
-# Link: https://orange-island-0a861b20f.1.azurestaticapps.net/
+# Link projeto: https://orange-island-0a861b20f.1.azurestaticapps.net/
+# Link DevOps: https://dev.azure.com/UNISANTA-1052N6A-AGV/connexa-agv/_sprints/taskboard/connexa-agv%20Team/connexa-agv/Etapa%202
 
 # Tarefa: TASK-001 - Cadastro de Usuário
 
